@@ -1,0 +1,68 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Studydesign
+
+## Innledning
+
+I de fem valgte artiklene er det kvinner og menstruasjonssyklus som er i fokus. Menstruasjonssyklusen er en biologisk rytme alle eumenorrheiske kvinner har som påvirker den kvinnelige kroppen på flere ulike måter. Syklusen deles vanligvis inn i tre ulike faser. Fasene inndeles etter nivået av ulike hormoner i kroppen, der østrogen og progesteron er de mest fremtredende. Mye av forskning innenfor idrett har tidligere vært gjort på mannlige idrettsutøvere. Den senere tiden har kvinnehelse blitt satt mer i fokus, og det er gjort flere prosjekter som omhandler kvinnelige idrettsutøvere. I de fem studiene som inkluderes i denne oppgaven er det gjennomgående spørsmålet om menstruasjonssyklusen påvirker idrettslig prestasjon, nærmere bestemt deres evne til maksimal kraftutvikling. Videre i oppgaven vil de ulike studiene sammenlignes basert på deres metode, resultater og statistiske analyser.
+
+## Metode
+
+I de fem studiene er det overordnede temaet hvordan menstruasjonssyklus påvirker evnen til maksimal kraftutvikling hos kvinner. I studien til [@romero-moraleda2019] er hensikten med studien å undersøke svingninger i muskelytelsen i Smith-maskin gjennom tre ulike faser av syklusen. En lignende hensikt finner vi i [@bambaeichi2004] der de ønsket å se på menstruasjonssyklusens innvirkning på muskelstyrke. I [@dejonge2001] var hensikten å se på fasenes påvirkning på skjelettmuskulaturens kontraktile egenskaper, mens det i [@fridén2003] ble sett på både muskelstyrke og utholdenhet. I siste artikkel var hensikten å se på syklusen påvirkning på fire ulike indekser for idrettsprestasjon, der av muskelstyrke [@lebrun1995]. Ettersom hensiktene varierer litt fra hverandre, vil besvarelsen av disse spørsmålene få frem ulike nyanser som alle likevel ligger under det overordnede spørsmålet angående evnen til kraftutvikling i de ulike fasene av syklusen.
+
+I flere av oppgavene settes det retningslinjer som veileder forskningen ved hjelp av en hensikt eller et mål. Det er kun i [@fridén2003] at det presenteres en klar hypotese om at «Muscle Strength and Endurance Do Not Significantly Vary Across 3 Phases of the Menstrual Cycle in Moderately Active Premenopausal Women». I de resterende artiklene er det spesifikke spørsmålet formulert gjennom en hensikt eller et spørsmål. I dette tilfellet kan man anta at det er flere alternative forklaringer som gjør at [@fridén2003]  formulerer hypotesen slik de her har gjort. I forskning er det ofte flere faktorer som spiller inn på resultatet. Når det kommer til forskning på kvinner og deres menstruasjonssyklus er det store individuelle forskjeller som skal tas i betraktning. Det samme skal også valg av protokoll, metode for innsamling av data og store metodiske utfordringer knyttet til feltet. At [@fridén2003] utformer hypotesen slik kan blant annet også skyldes tidligere forskning gjort på området og temaets teoretiske bakgrunn. Det er likevel viktig å huske at dersom resultatene ikke støtter opp under hypotesen, betyr ikke det nødvendigvis at hypotesen er feil, men at det kan være forhold eller andre variabler som påvirker resultatene.
+
+## Logikk
+
+Hva som leder opp til studienes hypotese eller spørsmål varierer fra studie til studie. Deres logikklinje, som er et uttrykk for hvordan forfatterne bygger opp under deres hypotese eller spørsmål, er viktig for å påse at det som skal undersøkes bygger på allerede eksisterende kunnskap. Der [@romero-moraleda2019] i sin innledning presenterer teori og hva tidligere forskning sier om temaet, legger [@bambaeichi2004] større vekt på teori og mindre på tidligere forskning. Her kan det diskuteres hvor mye relevant forskning forfatterne kunne henvise til på dette tidspunktet. I [@dejonge2001] får de metodiske utfordringene knyttet til feltet stor plass i innledningen, dette på bekostning av den teoretiske bakgrunnen. Her pekes det heller på tidligere forskning, og utfordringene knyttet til deres metode. Dette er videre noe som får stor plass i studiens diskusjon [@dejonge2001]. Innledningen presenterer både hva vi vet, og hva vi ikke vet. Slik formulerer innledningen «retningslinjer», som peker i retningen studien skal bevege seg i. På denne måten ser vi hvordan «linjen av logikk» kan være bygget opp på flere måter, men likevel presentere en hypotese, hensikt eller retningslinjer som naturlig viderefører det vi allerede vet om temaet.
+
+```{r}
+#| label: Sammenfatning av de fem studienes utvalg, studiedesign, protokoller og resultat. 
+#| echo: false
+#| warning: false
+#| message: false
+#| tbl-cap: "Tabell 1: Sammenfatning av de fem inkluderte tabellene"
+
+
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(gt)
+
+tabell <- read_excel("filer/studydesign_tabell.xlsx")
+
+tabell %>%
+        select(studie, subjekt, gj.alder, sd.alder, studiedesign, testprotokoll, konklusjon) %>%
+        gt() %>% 
+  cols_width(
+    ends_with("r") ~ px(45),
+    everything() ~ px(125)
+  ) %>% 
+  cols_label(studie = "Studie",
+            subjekt = "Subjekt (n)",
+            gj.alder = "Alder",
+            sd.alder = "",
+            studiedesign = "Studiedesign",
+            testprotokoll = "Protokoll",
+            konklusjon = "Konklusjon")
+
+
+
+```
+
+## Diskusjon
+
+Totalt inkluderer de fem studiene 62 kvinner. Alle studiene inkluderer enkeltvis et lite utvalg som er inkludert basert på ulike inklusjons- og eksklusjonskriterier. Selv om alle studiene inkluderer eumenorrheiske kvinner, må resultatene likevel tolkes med forsiktighet. Dette grunner i at utvalgene er såpass små og varierende, at det er vanskelig å konkludere med noe som kan gjelde alle. Her spiller også temaets store individuelle forskjeller og kompleksitet inn. Hadde utvalgene vært større kan vi anta at studiene hadde hatt større statistisk kraft. Jo høyere denne kraften er, jo høyere er sannsynligheten for å oppdage en effekt dersom den eksisterer. Større utvalg minimerer sannsynligheten for at resultatene vi får er tilfeldige.
+
+I de ulike studiene er det benyttet ulike protokoller for de fysiske testene og for verifisering av tidspunkt i syklus. Dette skaper usikkerhet rundt de variablene (østrogen- og progesteronnivåene) som skal måles, og sammenligning på tvers av studier blir vanskeligere. Det er derfor lettere å se på studiene enkeltvis. Det er likevel viktig å igjen trekke frem at dette er studier med lav statistisk kraft sett utafra utvalgsstørrelsen, og at de i liten grad kan brukes til å generalisere et svar overfor kvinner generelt.
+
+I [@fridén2003] er prøvestørrelsen 10. Signifikansnivået (alfa) er her satt til 0.05. Artikkelen oppgir at de med one-way ANOVA testing vil ha 97% kraft til å oppdage en forskjell på 10%. Denne statistiske metoden sammenligner styrken i tre forskjellige grupper, of ser etter signifikante forskjeller (<0.05). I denne testen sammenlignes gjennomsnittene fra de forskjellige gruppene. [@romero-moraleda2019] oppgir i sin artikkel at de brukte en Shapiro-Wilk-test for å teste dataens normalitet. Den statistiske terskelen ble satt til p \< 0.05, og det ble brukt enveis variansanalyse av gjentatte mål (ANOVA). Studien viser ikke til noen signifikante funn. Effektstørrelsen (ES) ble også beregnet for å tillate en størrelsesbasert slutningstilnærming. Spesifikt ble effektstørrelsesstatistikken ± 90 % konfidensintervall (CI) brukt på log-transformerte data. Ettersom at dette resulterer i et bredere utvalg enn f.eks ± 95 % CI, kan dette gi mer konservative vurderinger. Log-transformasjon er et tiltak [@romero-moraleda2019] har brukt  for å håndtere skjevhetene i dataen. Tranformasjonen bidrar til å gjøre fordelingen av dataen mer symmetrisk. Den minste signifikante standardiserte effektterskelen ble satt til 0,2. Dermed ønsket forskerne å identifisere effekter større enn \< 0.2 for å kunne anse de som signifikante. For å se på sannsynligheten for å overskride terskelen på 0.2 ble det brukt en kvalitativ diskriptor. Dette kan være en måte å kvalitativt vurdere om sannsynligheten for at effekten er etydningsfull.
+
+I [@bambaeichi2004] ble Tukey HSD post-hoc analyse brukt i forbindelse med two-way ANOVA analysen. Two-way ANOVA-analysen brukes når man ønsker å analysere effekten av to uavhnegige variabler opp mot den avhengige variabelen samtidig. Metoden er ofte brukt ved komplekse forskningsdesign. Tukey HSD post-hoc analysen brukes på sin side for å lokalisere spesifikke forskjeller mellom gruppene etter at signifikante forskjeller er funnet (gjennom two-way ANOVA). Også i denne studien ble statistisk signifikansnivå satt til 0.05. Bruk av post-hoc analyser gir spesifikke p-verdier for hver parvise sammenligning, og det gjør det lettere å identifisere forskjeller mellom grupper. Post-hoc-analyser tar også hensyn til risikoen for type 1-feil, som ofte øker når man utfører flere parvise sammenligninger. Type 1-feil er på sin side å forkaste en sann nullhypotese. I [@dejonge2001] ble test-retest-repeterbarheten til styrkeparameterne som ble målt gjennomført. En slik type test måler påliteligheten av styrkemålingene. Ved denne analysen kan man blant annet kontrollere endring over tid, redusere effekten av tilfeldige feil, identifisere systematiske feil. Dermed er denne testen godt egnet for denne typen studiedesign (longitudinelle studier), der man ønsker å se på pålitelighet/stabilitet av en variabel over tid. Påliteligheten ble demonstrert med en intra-klasse korrelasjonskoeffisient (ICC), som brukes til å måle konsistensen mellom målingene i test-retesten. I dette tilfellet ble ICC-verdiene målt til mellom 0.88 til 0.96, noe som viser til høy grad av konsistens (1 = høy grad av konsistens). Dette er en god indikasjon på at resultatene gjenspeiler de virkelige styrkenivåer. I [@lebrun1995] ble power målt ved bruk av gjennomsnitt og standardavvik for hver test. Signifikansnivået ble satt til 0.05, og poweren ble satt til 90%. Data fra testene ble analysert ved bruk av en student´s t-test, som er en statistisk test som sammenligner gjennomsnittene i to relaterte datasett. I dette tilfellet er data fra testene i follikulær- og luteal fase sammenlignet. Testen brukes til å fastslå om det er en signifikant forskjell mellom gjennomsnittene til de to datasettene.
+
+## Konklusjon
+
+Som vi leser av resultatene, har studiene benyttet seg av ulike statistiske analyser for å se på resultatenes pålitelighet og statistiske kraft. Ingen av studiene viser til at det er forskjell i evnen til maksimal kraftutvikling i de ulike fasene av menstruasjonssyklus, noe som gjør at blant annet [@fridén2003] får bekreftet sin hypotese. Likevel viser de ulike studiene til temaområdets kompleksitet og individuelle variasjoner. Dette gjør at studiene konkluderer med at det er et tema som må forskes mer på, samt at metodiske utfordringer er nødt til å løses for å få til mer pålitelig forskning på området.

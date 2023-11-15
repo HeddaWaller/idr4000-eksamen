@@ -1,0 +1,3 @@
+# Forord {.unnumbered}
+
+Denne boken er besvarelsen i mappeeksamen i emnet IDR4000 - Kvantitativ metode og statistikk. Filene denne boken er bygget opp av og tilhørende kode finnes i linken https://github.com/HeddaWaller/idr4000-eksamen.git. 

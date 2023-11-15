@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "IDR4000 Mappeeksamen"
+  author: "Kandidat 408"
+  date: "2023-11-17"
+  chapters:
+    - index.qmd
+    - 01-reliabilitet.qmd
+    - 02-vitenskapsfilosofi.qmd
+    - 03-RNAekstraksjon.qmd
+    - 04-studydesign.qmd
+    - 05-repeterteforsok.qmd
+    - 06-references.qmd
+
+
+bibliography: resources/references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

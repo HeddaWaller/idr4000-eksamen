@@ -1,0 +1,242 @@
+# Analyse av repeterte forsøk 
+
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| include: FALSE
+
+
+library(exscidata)
+data("dxadata"); data("strengthvolume")
+
+library(tidyverse)
+
+dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, include, sets, leg, lean.mass) %>%
+  print()
+
+
+```
+
+
+## Introduksjon
+Det er stor enighet om at styrketrening er en effektiv metode for å blant annet øke muskelmasse og muskelstyrke [@aube2022; @bradj.schoenfeld2019]. I tillegg er det vist at styrketrening har positiv innvirkning på flere helsemessige aspekter, som blant annet hjerte-kar-sykdommer, vektkontroll og bentetthet [@krieger2009]. 
+
+Treningsvolum sier noe om hvor mye man trener [@aube2022]. Ofte regnes det ut ifra antallet effektive sett, og deres vekt og repetisjoner [@bradj.schoenfeld2019]. Volum ses gjerne på som veiledende utifra hva som er målet med treningen, om det er maksimalstyrke eller utholdende styrke [@ratamess2009; @carpinelli1998]. Høyt treningsvolum forbindes med vekst i muskelmasse, mens lavere volum ofte forbindes med økning i muskelstyrke  [@baz-valle2022]. Der muskelmasse sier noe om mengden skjellettmuskulatur i kroppen, dreier muskelstyrke seg om muskelens evne til å generere kraft [@ratamess2009]. Hvordan kroppen tilpasser seg styrketrening bestemmes av flere faktorer. Her kan blant annet søvn, kosthold, alder, kjønn og tidligere erfaring med styrketrening være påvirkende [@hughes2018]. 
+
+
+Formålet med denne studien er å avaluere effekten av enkeltsett og flersett treningsprotokoller på muskelmasse og muskelstyrke. 
+
+
+## Metode
+*Deltakere*
+
+Deltakerne i studien bestod av 41 røykfrie kvinner og menn i alderen 18-40 år. Studien stilte ulike krav til deltakerne, og de ble rekruttert utifra bestemte eksklusjonskriterier. Disse kriteriene var hhv  intoleranse mot lokalbedøvelse, treningshistorikk med mer enn 1 ukentlig styrketreningsøkt i løpet av de siste 12 månedene før intervensjonen, nedsatt muskelstyrke grunnet tidligere eller nåværende skade og inntak av reseptbelagte medisikamenter som kunne forstyrre intervensjonen og treningstilpasningen. I dataanalysen ble syv deltakere eksludert da de ikke gjennomførte 85% av de planlagte treningsøktene. Her ble grunner som smerter og vanskeligheter med å overholde protokollen trukket frem. Alle deltakerne kunne rapportere tidligere erfaring med sportsaktiviteter, og 20 av de oppga at de var engasjert i fysisk aktivitet ved påmeldingstidspunktet. Av disse utførte 10 stykker sporadisk styrketrening med én eller færre økter i uken. 
+
+
+*Studieoversikt*
+
+Intervensjonen bestod av 12 uker fullkroppstrening. For å skille mellom treningsvolumet hos hver enkelt deltaker ble øvelsene beinpress, legcurl og kneekstensjon utført unilateralt i den gitte rekkefølgen. Det ble randomisert hvilket ben hos deltakerne som skulle ta ett og hvilket som skulle ta tre sett. På denne måten fikk deltakerne utført protokollen for begge sett. Muskelstyrkene til deltakerne ble målt ved oppstart, i uke 3, uke 5, uke 9 og ved endt intervensjon. Kroppssammensetningen ble målt både før og etter intervensjonen med DXA-skanning.  
+
+
+*Protokoll*
+
+For alle treningsøktene ble det gjennomført en standardisert oppvarmingsrutiner bestående av 5 minutter sykkel (RPE på 12-14), 10 repetisjoner av push-ups, sit-ups, rygghev og knebøy med kroppsvekt og avsluttende ett sett med 10 repetisjoner av øvelesene gitt i protokollen (belastning 50% av 1RM). Styrkeøvelsene ble gjennomført som enten ett sett eller tre sett per øvelse, avhengig av hva delakeren har fått tildelt. Enkle serier ble utført mellom det 2. og 3. settet i protokollen. Etter benøvelsene utførte deltakerne to sett av bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing. Pausen mellom settene lå gjennomgående på 90-180 sekunder. 
+
+Intensiteten på treningen hadde en gradvis økning med 10RM de første to ukene, deretter 8RM de neste tre og 7RM de siste syv ukene. For å tilpasse treningsprogrammet til deltakerne selv ble noen økter gjennomført uten tilsyn. 91% av øktene ble derimot gjennomført med tilsyn. Fra den niende økten ble én av de tre ukentlige øktene gjort med redusert belastning (tilsvarende 90% av forrige økt med samme antall repetisjoner). For å bidra til rask restitusjon ble fikk deltakerne en standardisert drikke etter hver økt, bestående av 0.15 g protein, 11.2 g karbohydrat og 0.5 g fett per kg kroppsvekt. 
+
+
+Maksimal styrke ble vurdert som 1RM (repetisjonmaksimum) i unilateralt benpress og kneekstensjon. Testen begynte med en spesifikk oppvarming før hver øelse som besto av 10, 6 og 3 repetisjoner ved en belastning på 50, 75 og 85% av estimert 1RM. Deretter ble reell 1RM funnet ved å øke motstanden gradvis til deltakerne ikke lenger klarte å gjennomføre hele bevegelsesmønsteret. Den tyngste vellykkede belastningen ble definert som 1RM.  
+
+1RM ble ved oppstart vurdert to ganger som isokinetisk og isometrisk styrke, separert med minst fire dager. Den høyeste verdien oppnådd ble brukt i senere analyser. Styrketestene ble gjennomført etter minst 48 timer fra sist treningsøkt. En samlet måling av muselstyrke ble beergnet som et gjennomsnitt av alle tester, der alle testene ble vektlagt likt. 
+
+
+*Dataanalyse og statistikk*
+
+Dataanalyse ble gjort i RStudio. Endringer i muskelmasse og muskelstyrke i øvelsen benpress (1RM) fra pre- til post-test ble regnet på, før det ble gjennomført en "paired t-test". På denne måten sammenligner vi resultatene fra pre-test og post-test med ett sett og tre sett, og vi får en indikasjon på om det er en signifikant forskjell mellom testene. Signifikansnivået ble satt til p < 0.05.
+
+
+## Resultat
+
+```{r}
+#| label: "Resultater og t-test for muskelmasse ved ett og tre sett"
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| include: FALSE
+
+## MUSKELMASSE
+
+lean.dat <- dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, include, sets, leg, lean.mass) %>%
+        filter(include == "incl") %>%
+      
+        pivot_wider(names_from = "time", 
+                    values_from = "lean.mass") %>%
+  
+# Utregning av endringen mellom pre og post
+        mutate(endring = post - pre) %>%
+        select(participant:sets, endring) %>%
+        pivot_wider(names_from = sets, 
+                    values_from = endring) %>%
+  print()
+
+# T.test
+
+t.test(lean.dat$multiple, lean.dat$single, paired = TRUE)
+```
+
+Av paired t-test-analysen fremkommer det at det er signifikant forskjell i økning i både muskelmasse og muskelstyrke i underekstremitetene ved styrketrening med ett sett og tre sett fra pre-test til post-test ettersom t(33) = 2.1875 og p = 0.033. Ved t(30) = 2.344 og p= 0.025, og viser dermed til signifikant endring. For muskelmasse ble gjennomsnittsforskjellen mellom pre- og post 122.79 gram. Gjennomsnittsforskjellen for muskelstyrke ble på sin side 7.21 kg. 
+
+
+### Endringer i muskelmasse
+
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| fig-cap: " Gjennomsnittlig endring i muskelmasse fra pre- og posttest for single og multiple sett."
+#| label: "fig-1"
+
+
+## Figur som fremstiller muskelvekst
+
+## Importere datasettet, eklsudere "leg lean mass" per ben. 
+## Fjerne observasjoner som er include == "excl"
+
+dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass.legs", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  
+  select(participant, time, sex, include, sets, leg, lean.mass.legs) %>%
+  group_by(time, sets) %>%
+  summarise(mean = mean(lean.mass.legs)) %>%
+  mutate(time = factor(time, levels = c("pre", "post"))) %>%
+
+## Utforming av selve figuren 
+  ggplot(aes(time, mean, color = sets,
+             group = sets)) + 
+  geom_line() + 
+  geom_point() +
+  
+## Endre navn på aksene + grupperingen
+  labs(x = "Testtidspunkt",
+       y = "Muskelmasse (gram)",
+       color = "Antall sett")
+
+```
+@fig-1 viser en gjennomsnittlig større økning i muskelmasse for benet som trente tre sett, sammenlignet med benet som trente med ett sett. 
+
+### Endringer i muskelstyrke
+
+```{r}
+#| label: "Resultater og t-test for muskelstyrke i øvelsen benpress"
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| include: FALSE
+
+
+## MUSKELSTYRKE - BENPRESS
+
+strength.dat <- strengthvolume %>%
+  select(participant:load) %>%
+        filter(include == "incl") %>%
+        
+        mutate(time = if_else(time %in% c("pre", "session1"), "pre", time)) %>%
+        group_by(time, exercise, participant, sex, sets) %>%
+        summarise(load = mean(load, na.rm = TRUE)) %>%
+        filter(exercise == "legpress", 
+                time %in% c("pre", "post")) %>%
+        pivot_wider(names_from = "time",
+                    values_from = "load") %>%
+
+# Utregning av endringen mellom pre og post
+
+        mutate(endring = post - pre) %>% 
+        select(participant:sets, endring) %>%
+        pivot_wider(names_from = sets, 
+                    values_from = endring) %>%
+
+  print()
+
+# T-test
+
+t.test(strength.dat$multiple, strength.dat$single, paired = TRUE)
+```
+
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| fig-cap: " Gjennomsnittlig endring i muskelstyrke ved 1RM beinpress fra pre- og posttest for single og multiple sett."
+#| label: "fig-2"
+
+## Figur som fremstiller muskelvekst
+
+strengthvolume %>%
+  select(participant, include, time, sets, leg, exercise, load) %>%
+  filter(!is.na(time), exercise == "legpress") %>% 
+  group_by(time, sets) %>% 
+  summarise(gj.load = mean(load, na.rm = TRUE)) %>% 
+  filter(time %in% c("pre", "post")) %>% 
+  mutate(time = factor(time, levels = c("pre", "post", na.rm = TRUE))) %>% 
+  
+## Utforming av selve figuren 
+  ggplot(aes(time, gj.load, color = sets,
+             group = sets)) + 
+  geom_line() + 
+  geom_point() +
+  
+## Endre navn på aksene + grupperingen
+  labs(x = "Testtidspunkt", 
+       y = "Belastning (kg)",
+       color = "Antall sett")
+
+```
+
+
+@fig-2 viser hvordan styrke målt ved 1RM i øvelsen benpress økte mer i benet som tok tre sett, kontra benet som tok ett sett. 
+
+## Diskusjon
+Resultatene viser til større økning i både muskelstyrke og muskelmasse ved trening med tre sett sammenlignet med ett sett. Dette samsvarer med resultater i allerede eksisterende litteratur på området [@krieger2009; @bradj.schoenfeld2019]. I [@bradj.schoenfeld2019] trekkes det spesifikt frem hvordan muskelstyrken hadde større økning med flere enn ett sett. Likevel synes ikke forskjellen på ett og flere sett å være signifikant i disse studiene. Det finnes og litteratur som viser at det ikke er forskjell i reusltatene for trening med ett og tre sett [@carpinelli1998]. 
+
+
+Hvordan styrke påvirker kroppen er individuelt. I [@aube2022] og [@bradj.schoenfeld2019] er det forsket på trente individer. Tidligere forskning viser hvordan individer som har tidligere erfaring med styrketrening fortere kan øke i muskelmasse og/eller muskelstyrke [@ratamess2009]. I vårt tilfelle hadde alle deltakerne erfaring med sportsaktiviteter fra tidligere, men kun 10 stykker utførte sporadisk styrketrening med en eller færre økter i uken. Ettersom alle forsøkspersonene utførte protokoll i henhold til både ett og tre sett kan vi anta at dette ikke påvirket resultatene i stor grad, men det må likevel tas i betraktning. 
+
+
+Som nevnt innlednigsvis påvirkes adaptasjonen til trening av flere sosiale og psykologiske faktorer [@hughes2018]. Søvn, ernæring og tilstrekkelig restitusjon er påvirkende på hvordan kroppen tilegner seg treningen. I denne studien ble det ikke gjort noen kontroll på blant annet næringsinntak. Siden tilstrekkelig med næring i stor grad påvirker muskelmasse, kan dette ses på som en begrensing for studiedesignet [@stark2012]. Resultatene må derfor tolkes med dette tatt i betraktning. 
+
+
+## Konklusjon
+
+Resultatene viser til signifikant forskjell i både muskelmasse og muskelstyrke (benpress) ved trening med ett og tre sett i en 12 ukers intervensjon. Det er et høyere treningsvolum med tre sett som her favoriseres. Funnet støttes av allerede eksisterende litteratur på området [@krieger2009; @bradj.schoenfeld2019; @aube2022]. 
+
+
+
+
+
+
+

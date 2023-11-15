@@ -1,1 +1,0 @@
-# idr4000-eksamen

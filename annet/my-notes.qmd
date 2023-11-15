@@ -1,0 +1,72 @@
+---
+title: "my-notes."
+format: html
+editor: visual
+bibliography: resources/references.bib
+---
+
+Oppgave 1 - Reliabilitet
+
+@hopkins2000
+
+[@physiolo2013]
+
+Oppgave 2 - Vitenskapsfilosofi
+
+[@rækstad2012].
+
+[@hempel1966],
+
+[@holmen2023].
+
+[@tranøy2023].
+
+[@popper1969].
+
+[@alnes2023a].
+
+[@godfrey-smith2003].
+
+Oppgave 3 - RNA-ekstraksjon og analyse
+
+@livak2001
+
+@haugen2023
+
+@widrick2002
+
+@andersen2000
+
+@kukurba2015
+
+@taylor2019
+
+Oppgave 4 - Studydesign
+
+@lebrun1995
+
+@romero-moraleda2019
+
+@fridén2003
+
+@bambaeichi2004
+
+@dejonge2001
+
+Oppgave 5 - repeterte forsøk
+
+@stark2012
+
+@carpinelli1998
+
+@baz-valle2022
+
+@aube2022
+
+@ratamess2009
+
+@bradj.schoenfeld2019
+
+@krieger2009
+
+@hughes2018
